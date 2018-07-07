@@ -1,0 +1,15 @@
+D:\PruebasTecnicas\SGP\SGP.DAL\bin\Debug\SGP.DAL.dll.config
+D:\PruebasTecnicas\SGP\SGP.DAL\bin\Debug\SGP.DAL.dll
+D:\PruebasTecnicas\SGP\SGP.DAL\bin\Debug\SGP.DAL.pdb
+D:\PruebasTecnicas\SGP\SGP.DAL\bin\Debug\EntityFramework.dll
+D:\PruebasTecnicas\SGP\SGP.DAL\bin\Debug\EntityFramework.SqlServer.dll
+D:\PruebasTecnicas\SGP\SGP.DAL\bin\Debug\SGP.Models.dll
+D:\PruebasTecnicas\SGP\SGP.DAL\bin\Debug\SGP.Models.pdb
+D:\PruebasTecnicas\SGP\SGP.DAL\bin\Debug\SGP.Models.dll.config
+D:\PruebasTecnicas\SGP\SGP.DAL\bin\Debug\EntityFramework.xml
+D:\PruebasTecnicas\SGP\SGP.DAL\bin\Debug\EntityFramework.SqlServer.xml
+D:\PruebasTecnicas\SGP\SGP.DAL\obj\Debug\SGP.DAL.csprojAssemblyReference.cache
+D:\PruebasTecnicas\SGP\SGP.DAL\obj\Debug\SGP.DAL.csproj.CoreCompileInputs.cache
+D:\PruebasTecnicas\SGP\SGP.DAL\obj\Debug\SGP.DAL.csproj.CopyComplete
+D:\PruebasTecnicas\SGP\SGP.DAL\obj\Debug\SGP.DAL.dll
+D:\PruebasTecnicas\SGP\SGP.DAL\obj\Debug\SGP.DAL.pdb

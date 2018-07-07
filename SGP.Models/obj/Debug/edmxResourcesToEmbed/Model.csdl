@@ -1,0 +1,291 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SGPModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Ciudad">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="departamentoid" Type="Int32" />
+    <NavigationProperty Name="Departamento" Relationship="Self.FK_Ciudad_Departamento" FromRole="Ciudad" ToRole="Departamento" />
+    <NavigationProperty Name="Persona" Relationship="Self.FK_Persona_Ciudad" FromRole="Ciudad" ToRole="Persona" />
+  </EntityType>
+  <EntityType Name="Departamento">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="paisid" Type="Int32" />
+    <NavigationProperty Name="Ciudad" Relationship="Self.FK_Ciudad_Departamento" FromRole="Departamento" ToRole="Ciudad" />
+    <NavigationProperty Name="Pais" Relationship="Self.FK_Departamento_Pais" FromRole="Departamento" ToRole="Pais" />
+  </EntityType>
+  <EntityType Name="DetalleVenta">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ventaid" Type="Int32" />
+    <Property Name="productoid" Type="Int32" />
+    <Property Name="cantidad" Type="Int32" />
+    <Property Name="Total" Type="Double" />
+    <NavigationProperty Name="Producto" Relationship="Self.FK_DetalleVenta_Producto" FromRole="DetalleVenta" ToRole="Producto" />
+    <NavigationProperty Name="Venta" Relationship="Self.FK_DetalleVenta_Venta" FromRole="DetalleVenta" ToRole="Venta" />
+  </EntityType>
+  <EntityType Name="EstadoPago">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Pago" Relationship="Self.FK_Pago_EstadoPago" FromRole="EstadoPago" ToRole="Pago" />
+  </EntityType>
+  <EntityType Name="Pago">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fecha" Type="DateTime" Precision="3" />
+    <Property Name="ventaid" Type="Int32" />
+    <Property Name="valor" Type="Double" />
+    <Property Name="estadopagoid" Type="Int32" />
+    <NavigationProperty Name="EstadoPago" Relationship="Self.FK_Pago_EstadoPago" FromRole="Pago" ToRole="EstadoPago" />
+    <NavigationProperty Name="Venta" Relationship="Self.FK_Pago_Venta" FromRole="Pago" ToRole="Venta" />
+  </EntityType>
+  <EntityType Name="Pais">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Departamento" Relationship="Self.FK_Departamento_Pais" FromRole="Pais" ToRole="Departamento" />
+  </EntityType>
+  <EntityType Name="Persona">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombres" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="apellidos" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="fechanacimiento" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="ciudadid" Type="Int32" />
+    <NavigationProperty Name="Ciudad" Relationship="Self.FK_Persona_Ciudad" FromRole="Persona" ToRole="Ciudad" />
+    <NavigationProperty Name="Venta" Relationship="Self.FK_Venta_Persona" FromRole="Persona" ToRole="Venta" />
+  </EntityType>
+  <EntityType Name="Producto">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="precio" Type="Double" />
+    <Property Name="tipoproductoid" Type="Int32" />
+    <NavigationProperty Name="DetalleVenta" Relationship="Self.FK_DetalleVenta_Producto" FromRole="Producto" ToRole="DetalleVenta" />
+    <NavigationProperty Name="TipoProducto" Relationship="Self.FK_Producto_TipoProducto" FromRole="Producto" ToRole="TipoProducto" />
+  </EntityType>
+  <EntityType Name="TipoProducto">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Producto" Relationship="Self.FK_Producto_TipoProducto" FromRole="TipoProducto" ToRole="Producto" />
+  </EntityType>
+  <EntityType Name="Venta">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fecha" Type="DateTime" Precision="3" />
+    <Property Name="clienteid" Type="Int32" />
+    <Property Name="Total" Type="Double" />
+    <NavigationProperty Name="DetalleVenta" Relationship="Self.FK_DetalleVenta_Venta" FromRole="Venta" ToRole="DetalleVenta" />
+    <NavigationProperty Name="Pago" Relationship="Self.FK_Pago_Venta" FromRole="Venta" ToRole="Pago" />
+    <NavigationProperty Name="Persona" Relationship="Self.FK_Venta_Persona" FromRole="Venta" ToRole="Persona" />
+  </EntityType>
+  <Association Name="FK_Ciudad_Departamento">
+    <End Role="Departamento" Type="Self.Departamento" Multiplicity="0..1" />
+    <End Role="Ciudad" Type="Self.Ciudad" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Departamento">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Ciudad">
+        <PropertyRef Name="departamentoid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Persona_Ciudad">
+    <End Role="Ciudad" Type="Self.Ciudad" Multiplicity="0..1" />
+    <End Role="Persona" Type="Self.Persona" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ciudad">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Persona">
+        <PropertyRef Name="ciudadid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Departamento_Pais">
+    <End Role="Pais" Type="Self.Pais" Multiplicity="0..1" />
+    <End Role="Departamento" Type="Self.Departamento" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pais">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Departamento">
+        <PropertyRef Name="paisid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DetalleVenta_Producto">
+    <End Role="Producto" Type="Self.Producto" Multiplicity="0..1" />
+    <End Role="DetalleVenta" Type="Self.DetalleVenta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Producto">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="DetalleVenta">
+        <PropertyRef Name="productoid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DetalleVenta_Venta">
+    <End Role="Venta" Type="Self.Venta" Multiplicity="0..1" />
+    <End Role="DetalleVenta" Type="Self.DetalleVenta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Venta">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="DetalleVenta">
+        <PropertyRef Name="ventaid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Pago_EstadoPago">
+    <End Role="EstadoPago" Type="Self.EstadoPago" Multiplicity="0..1" />
+    <End Role="Pago" Type="Self.Pago" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EstadoPago">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Pago">
+        <PropertyRef Name="estadopagoid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Pago_Venta">
+    <End Role="Venta" Type="Self.Venta" Multiplicity="0..1" />
+    <End Role="Pago" Type="Self.Pago" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Venta">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Pago">
+        <PropertyRef Name="ventaid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Venta_Persona">
+    <End Role="Persona" Type="Self.Persona" Multiplicity="0..1" />
+    <End Role="Venta" Type="Self.Venta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Persona">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Venta">
+        <PropertyRef Name="clienteid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Producto_TipoProducto">
+    <End Role="TipoProducto" Type="Self.TipoProducto" Multiplicity="0..1" />
+    <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoProducto">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Producto">
+        <PropertyRef Name="tipoproductoid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="SGPEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Ciudad" EntityType="Self.Ciudad" />
+    <EntitySet Name="Departamento" EntityType="Self.Departamento" />
+    <EntitySet Name="DetalleVenta" EntityType="Self.DetalleVenta" />
+    <EntitySet Name="EstadoPago" EntityType="Self.EstadoPago" />
+    <EntitySet Name="Pago" EntityType="Self.Pago" />
+    <EntitySet Name="Pais" EntityType="Self.Pais" />
+    <EntitySet Name="Persona" EntityType="Self.Persona" />
+    <EntitySet Name="Producto" EntityType="Self.Producto" />
+    <EntitySet Name="TipoProducto" EntityType="Self.TipoProducto" />
+    <EntitySet Name="Venta" EntityType="Self.Venta" />
+    <AssociationSet Name="FK_Ciudad_Departamento" Association="Self.FK_Ciudad_Departamento">
+      <End Role="Departamento" EntitySet="Departamento" />
+      <End Role="Ciudad" EntitySet="Ciudad" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Persona_Ciudad" Association="Self.FK_Persona_Ciudad">
+      <End Role="Ciudad" EntitySet="Ciudad" />
+      <End Role="Persona" EntitySet="Persona" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Departamento_Pais" Association="Self.FK_Departamento_Pais">
+      <End Role="Pais" EntitySet="Pais" />
+      <End Role="Departamento" EntitySet="Departamento" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DetalleVenta_Producto" Association="Self.FK_DetalleVenta_Producto">
+      <End Role="Producto" EntitySet="Producto" />
+      <End Role="DetalleVenta" EntitySet="DetalleVenta" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DetalleVenta_Venta" Association="Self.FK_DetalleVenta_Venta">
+      <End Role="Venta" EntitySet="Venta" />
+      <End Role="DetalleVenta" EntitySet="DetalleVenta" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pago_EstadoPago" Association="Self.FK_Pago_EstadoPago">
+      <End Role="EstadoPago" EntitySet="EstadoPago" />
+      <End Role="Pago" EntitySet="Pago" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pago_Venta" Association="Self.FK_Pago_Venta">
+      <End Role="Venta" EntitySet="Venta" />
+      <End Role="Pago" EntitySet="Pago" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Venta_Persona" Association="Self.FK_Venta_Persona">
+      <End Role="Persona" EntitySet="Persona" />
+      <End Role="Venta" EntitySet="Venta" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Producto_TipoProducto" Association="Self.FK_Producto_TipoProducto">
+      <End Role="TipoProducto" EntitySet="TipoProducto" />
+      <End Role="Producto" EntitySet="Producto" />
+    </AssociationSet>
+    <FunctionImport Name="SP_ReporteClientesByCiudad" ReturnType="Collection(SGPModel.SP_ReporteClientesByCiudad_Result)">
+      <Parameter Name="nombreciudad" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_ReporteProductos" ReturnType="Collection(SGPModel.SP_ReporteProductos_Result)" />
+    <FunctionImport Name="SP_ReporteProductosByID" ReturnType="Collection(SGPModel.SP_ReporteProductosByID_Result)">
+      <Parameter Name="tipoproductoid" Mode="In" Type="Int32" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="SP_ReporteClientesByCiudad_Result">
+    <Property Type="String" Name="nombres" Nullable="false" MaxLength="200" />
+    <Property Type="String" Name="apellidos" Nullable="false" MaxLength="200" />
+    <Property Type="String" Name="ciudad" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="departamento" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="pais" Nullable="true" MaxLength="200" />
+  </ComplexType>
+  <ComplexType Name="SP_ReporteProductos_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="nombre" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="tipo" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="descripcion" Nullable="true" MaxLength="100" />
+    <Property Type="Double" Name="precio" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="SP_ReporteProductosByID_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="nombre" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="tipo" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="descripcion" Nullable="true" MaxLength="100" />
+    <Property Type="Double" Name="precio" Nullable="true" />
+  </ComplexType>
+</Schema>

@@ -1,0 +1,252 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SGPModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Ciudad">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="nvarchar" MaxLength="200" />
+    <Property Name="departamentoid" Type="int" />
+  </EntityType>
+  <EntityType Name="Departamento">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="nvarchar" MaxLength="200" />
+    <Property Name="paisid" Type="int" />
+  </EntityType>
+  <EntityType Name="DetalleVenta">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ventaid" Type="int" />
+    <Property Name="productoid" Type="int" />
+    <Property Name="cantidad" Type="int" />
+    <Property Name="Total" Type="float" />
+  </EntityType>
+  <EntityType Name="EstadoPago">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Pago">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fecha" Type="datetime" />
+    <Property Name="ventaid" Type="int" />
+    <Property Name="valor" Type="float" />
+    <Property Name="estadopagoid" Type="int" />
+  </EntityType>
+  <EntityType Name="Pais">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="Persona">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombres" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="apellidos" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="fechanacimiento" Type="date" Nullable="false" />
+    <Property Name="ciudadid" Type="int" />
+  </EntityType>
+  <EntityType Name="Producto">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="nvarchar" MaxLength="100" />
+    <Property Name="descripcion" Type="nvarchar" MaxLength="100" />
+    <Property Name="precio" Type="float" />
+    <Property Name="tipoproductoid" Type="int" />
+  </EntityType>
+  <EntityType Name="TipoProducto">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Venta">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fecha" Type="datetime" />
+    <Property Name="clienteid" Type="int" />
+    <Property Name="Total" Type="float" />
+  </EntityType>
+  <Association Name="FK_Ciudad_Departamento">
+    <End Role="Departamento" Type="Self.Departamento" Multiplicity="0..1" />
+    <End Role="Ciudad" Type="Self.Ciudad" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Departamento">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Ciudad">
+        <PropertyRef Name="departamentoid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Departamento_Pais">
+    <End Role="Pais" Type="Self.Pais" Multiplicity="0..1" />
+    <End Role="Departamento" Type="Self.Departamento" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pais">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Departamento">
+        <PropertyRef Name="paisid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DetalleVenta_Producto">
+    <End Role="Producto" Type="Self.Producto" Multiplicity="0..1" />
+    <End Role="DetalleVenta" Type="Self.DetalleVenta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Producto">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="DetalleVenta">
+        <PropertyRef Name="productoid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DetalleVenta_Venta">
+    <End Role="Venta" Type="Self.Venta" Multiplicity="0..1" />
+    <End Role="DetalleVenta" Type="Self.DetalleVenta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Venta">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="DetalleVenta">
+        <PropertyRef Name="ventaid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Pago_EstadoPago">
+    <End Role="EstadoPago" Type="Self.EstadoPago" Multiplicity="0..1" />
+    <End Role="Pago" Type="Self.Pago" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EstadoPago">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Pago">
+        <PropertyRef Name="estadopagoid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Pago_Venta">
+    <End Role="Venta" Type="Self.Venta" Multiplicity="0..1" />
+    <End Role="Pago" Type="Self.Pago" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Venta">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Pago">
+        <PropertyRef Name="ventaid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Persona_Ciudad">
+    <End Role="Ciudad" Type="Self.Ciudad" Multiplicity="0..1" />
+    <End Role="Persona" Type="Self.Persona" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ciudad">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Persona">
+        <PropertyRef Name="ciudadid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Producto_TipoProducto">
+    <End Role="TipoProducto" Type="Self.TipoProducto" Multiplicity="0..1" />
+    <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoProducto">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Producto">
+        <PropertyRef Name="tipoproductoid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Venta_Persona">
+    <End Role="Persona" Type="Self.Persona" Multiplicity="0..1" />
+    <End Role="Venta" Type="Self.Venta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Persona">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Venta">
+        <PropertyRef Name="clienteid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="SP_ReporteClientesByCiudad" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="nombreciudad" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="SP_ReporteProductos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="SP_ReporteProductosByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="tipoproductoid" Type="int" Mode="In" />
+  </Function>
+  <EntityContainer Name="SGPModelStoreContainer">
+    <EntitySet Name="Ciudad" EntityType="Self.Ciudad" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Departamento" EntityType="Self.Departamento" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DetalleVenta" EntityType="Self.DetalleVenta" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EstadoPago" EntityType="Self.EstadoPago" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Pago" EntityType="Self.Pago" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Pais" EntityType="Self.Pais" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Persona" EntityType="Self.Persona" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Producto" EntityType="Self.Producto" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TipoProducto" EntityType="Self.TipoProducto" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Venta" EntityType="Self.Venta" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Ciudad_Departamento" Association="Self.FK_Ciudad_Departamento">
+      <End Role="Departamento" EntitySet="Departamento" />
+      <End Role="Ciudad" EntitySet="Ciudad" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Departamento_Pais" Association="Self.FK_Departamento_Pais">
+      <End Role="Pais" EntitySet="Pais" />
+      <End Role="Departamento" EntitySet="Departamento" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DetalleVenta_Producto" Association="Self.FK_DetalleVenta_Producto">
+      <End Role="Producto" EntitySet="Producto" />
+      <End Role="DetalleVenta" EntitySet="DetalleVenta" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DetalleVenta_Venta" Association="Self.FK_DetalleVenta_Venta">
+      <End Role="Venta" EntitySet="Venta" />
+      <End Role="DetalleVenta" EntitySet="DetalleVenta" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pago_EstadoPago" Association="Self.FK_Pago_EstadoPago">
+      <End Role="EstadoPago" EntitySet="EstadoPago" />
+      <End Role="Pago" EntitySet="Pago" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pago_Venta" Association="Self.FK_Pago_Venta">
+      <End Role="Venta" EntitySet="Venta" />
+      <End Role="Pago" EntitySet="Pago" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Persona_Ciudad" Association="Self.FK_Persona_Ciudad">
+      <End Role="Ciudad" EntitySet="Ciudad" />
+      <End Role="Persona" EntitySet="Persona" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Producto_TipoProducto" Association="Self.FK_Producto_TipoProducto">
+      <End Role="TipoProducto" EntitySet="TipoProducto" />
+      <End Role="Producto" EntitySet="Producto" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Venta_Persona" Association="Self.FK_Venta_Persona">
+      <End Role="Persona" EntitySet="Persona" />
+      <End Role="Venta" EntitySet="Venta" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

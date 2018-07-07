@@ -1,0 +1,7 @@
+D:\PruebasTecnicas\SGP\SGP.Services\bin\SGP.Services.dll.config
+D:\PruebasTecnicas\SGP\SGP.Services\bin\SGP.Services.dll
+D:\PruebasTecnicas\SGP\SGP.Services\bin\SGP.Services.pdb
+D:\PruebasTecnicas\SGP\SGP.Services\obj\Debug\SGP.Services.csprojAssemblyReference.cache
+D:\PruebasTecnicas\SGP\SGP.Services\obj\Debug\SGP.Services.csproj.CoreCompileInputs.cache
+D:\PruebasTecnicas\SGP\SGP.Services\obj\Debug\SGP.Services.dll
+D:\PruebasTecnicas\SGP\SGP.Services\obj\Debug\SGP.Services.pdb

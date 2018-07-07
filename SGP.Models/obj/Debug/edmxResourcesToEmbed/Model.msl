@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SGPModelStoreContainer" CdmEntityContainer="SGPEntities">
+    <EntitySetMapping Name="Ciudad">
+      <EntityTypeMapping TypeName="SGPModel.Ciudad">
+        <MappingFragment StoreEntitySet="Ciudad">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="departamentoid" ColumnName="departamentoid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Departamento">
+      <EntityTypeMapping TypeName="SGPModel.Departamento">
+        <MappingFragment StoreEntitySet="Departamento">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="paisid" ColumnName="paisid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DetalleVenta">
+      <EntityTypeMapping TypeName="SGPModel.DetalleVenta">
+        <MappingFragment StoreEntitySet="DetalleVenta">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="ventaid" ColumnName="ventaid" />
+          <ScalarProperty Name="productoid" ColumnName="productoid" />
+          <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+          <ScalarProperty Name="Total" ColumnName="Total" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EstadoPago">
+      <EntityTypeMapping TypeName="SGPModel.EstadoPago">
+        <MappingFragment StoreEntitySet="EstadoPago">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pago">
+      <EntityTypeMapping TypeName="SGPModel.Pago">
+        <MappingFragment StoreEntitySet="Pago">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+          <ScalarProperty Name="ventaid" ColumnName="ventaid" />
+          <ScalarProperty Name="valor" ColumnName="valor" />
+          <ScalarProperty Name="estadopagoid" ColumnName="estadopagoid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pais">
+      <EntityTypeMapping TypeName="SGPModel.Pais">
+        <MappingFragment StoreEntitySet="Pais">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Persona">
+      <EntityTypeMapping TypeName="SGPModel.Persona">
+        <MappingFragment StoreEntitySet="Persona">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nombres" ColumnName="nombres" />
+          <ScalarProperty Name="apellidos" ColumnName="apellidos" />
+          <ScalarProperty Name="fechanacimiento" ColumnName="fechanacimiento" />
+          <ScalarProperty Name="ciudadid" ColumnName="ciudadid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Producto">
+      <EntityTypeMapping TypeName="SGPModel.Producto">
+        <MappingFragment StoreEntitySet="Producto">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="precio" ColumnName="precio" />
+          <ScalarProperty Name="tipoproductoid" ColumnName="tipoproductoid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TipoProducto">
+      <EntityTypeMapping TypeName="SGPModel.TipoProducto">
+        <MappingFragment StoreEntitySet="TipoProducto">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Venta">
+      <EntityTypeMapping TypeName="SGPModel.Venta">
+        <MappingFragment StoreEntitySet="Venta">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+          <ScalarProperty Name="clienteid" ColumnName="clienteid" />
+          <ScalarProperty Name="Total" ColumnName="Total" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="SP_ReporteClientesByCiudad" FunctionName="SGPModel.Store.SP_ReporteClientesByCiudad">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SGPModel.SP_ReporteClientesByCiudad_Result">
+          <ScalarProperty Name="nombres" ColumnName="nombres" />
+          <ScalarProperty Name="apellidos" ColumnName="apellidos" />
+          <ScalarProperty Name="ciudad" ColumnName="ciudad" />
+          <ScalarProperty Name="departamento" ColumnName="departamento" />
+          <ScalarProperty Name="pais" ColumnName="pais" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_ReporteProductos" FunctionName="SGPModel.Store.SP_ReporteProductos">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SGPModel.SP_ReporteProductos_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="tipo" ColumnName="tipo" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="precio" ColumnName="precio" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_ReporteProductosByID" FunctionName="SGPModel.Store.SP_ReporteProductosByID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SGPModel.SP_ReporteProductosByID_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="tipo" ColumnName="tipo" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="precio" ColumnName="precio" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

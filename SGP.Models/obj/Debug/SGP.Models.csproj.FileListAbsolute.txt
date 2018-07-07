@@ -1,0 +1,12 @@
+D:\PruebasTecnicas\SGP\SGP.Models\bin\Debug\SGP.Models.dll.config
+D:\PruebasTecnicas\SGP\SGP.Models\bin\Debug\SGP.Models.dll
+D:\PruebasTecnicas\SGP\SGP.Models\bin\Debug\SGP.Models.pdb
+D:\PruebasTecnicas\SGP\SGP.Models\bin\Debug\EntityFramework.dll
+D:\PruebasTecnicas\SGP\SGP.Models\bin\Debug\EntityFramework.SqlServer.dll
+D:\PruebasTecnicas\SGP\SGP.Models\bin\Debug\EntityFramework.xml
+D:\PruebasTecnicas\SGP\SGP.Models\bin\Debug\EntityFramework.SqlServer.xml
+D:\PruebasTecnicas\SGP\SGP.Models\obj\Debug\SGP.Models.csproj.CoreCompileInputs.cache
+D:\PruebasTecnicas\SGP\SGP.Models\obj\Debug\SGP.Models.csproj.CopyComplete
+D:\PruebasTecnicas\SGP\SGP.Models\obj\Debug\SGP.Models.dll
+D:\PruebasTecnicas\SGP\SGP.Models\obj\Debug\SGP.Models.pdb
+D:\PruebasTecnicas\SGP\SGP.Models\obj\Debug\SGP.Models.csprojAssemblyReference.cache
