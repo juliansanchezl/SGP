@@ -1,0 +1,56 @@
+﻿@model IEnumerable<SGP.ServiceReference1.Producto>
+
+@{
+    ViewBag.Title = "ReporteProductos";
+}
+
+<h2>Reporte de Productos</h2>
+
+@using (Html.BeginForm())
+{
+    <p>
+        Nombre:  @Html.TextBox("txtnombre") <input type="submit" value="Consultar" class="btn-default">
+    </p>
+}
+
+@if (Model != null)
+{
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.tipo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.descripcion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.precio)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tipo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.descripcion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.precio)
+                </td>
+                <td></td>
+            </tr>
+        }
+
+    </table>
+}

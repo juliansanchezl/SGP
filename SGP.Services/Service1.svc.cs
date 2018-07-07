@@ -1,4 +1,6 @@
-﻿using System;
+﻿using SGP.DAL;
+using SGP.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -12,22 +14,42 @@ namespace SGP.Services
     // NOTE: para iniciar el Cliente de prueba WCF para probar este servicio, seleccione Service1.svc o Service1.svc.cs en el Explorador de soluciones e inicie la depuración.
     public class Service1 : IService1
     {
-        public string GetData(int value)
+        public List<Producto> GetProducts()
         {
-            return string.Format("You entered: {0}", value);
+            List<Producto> listaproductos = new List<Producto>();
+            IRepository<SGP.Models.Producto> repository = new Repository<SGP.Models.Producto>();
+            var lista = repository.FindAll();
+            foreach (var item in lista)
+            {
+                listaproductos.Add( TranslateTblProductoToProductoEntity(item));
+            }
+
+            return listaproductos;
         }
 
-        public CompositeType GetDataUsingDataContract(CompositeType composite)
+        public List<Producto> GetProductsByName(string nombre)
         {
-            if (composite == null)
+            List<Producto> listaproductos = new List<Producto>();
+            IRepository<SGP.Models.Producto> repository = new Repository<SGP.Models.Producto>();
+            var query = repository.FindAll(x=> x.nombre.Contains(nombre));
+            foreach (var item in query)
             {
-                throw new ArgumentNullException("composite");
+                listaproductos.Add(TranslateTblProductoToProductoEntity(item));
             }
-            if (composite.BoolValue)
+            return listaproductos;
+        }
+
+
+        private Producto TranslateTblProductoToProductoEntity(Models.Producto item)
+        {
+            return new Producto()
             {
-                composite.StringValue += "Suffix";
-            }
-            return composite;
+                id = item.id,
+                nombre = item.nombre,
+                descripcion = item.descripcion,
+                precio = item.precio,
+                tipo = item.TipoProducto.nombre
+            };
         }
     }
 }

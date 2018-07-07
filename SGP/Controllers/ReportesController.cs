@@ -28,11 +28,9 @@ namespace SGP.Controllers
 
 
 
-        // GET: Reportes
+        // GET: ReporteClientes
         public ActionResult ReporteClientes()
         {
-            //ViewBag.reporte = entity.SP_ReporteClientesByCiudad("tunja");
-            //ViewBag.reporte = null;
             return View();
         }
 
@@ -43,6 +41,18 @@ namespace SGP.Controllers
             return View();
         }
 
+        // GET: ReporteProductos
+        public ActionResult ReporteProductos()
+        {
+            return View();
+        }
 
+        [HttpPost]
+        public ActionResult ReporteProductos(string txtnombre)
+        {
+            ServiceReference1.Service1Client obj = new ServiceReference1.Service1Client();
+            var respuesta = obj.GetProductsByName(txtnombre);
+            return View(respuesta);
+        }
     }
 }

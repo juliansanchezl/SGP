@@ -12,36 +12,28 @@ namespace SGP.Services
     [ServiceContract]
     public interface IService1
     {
+        [OperationContract]
+        List<Producto> GetProducts();
 
         [OperationContract]
-        string GetData(int value);
+        List<Producto> GetProductsByName(string nombre);
 
-        [OperationContract]
-        CompositeType GetDataUsingDataContract(CompositeType composite);
-
-        // TODO: agregue aquí sus operaciones de servicio
     }
 
 
-    // Utilice un contrato de datos, como se ilustra en el ejemplo siguiente, para agregar tipos compuestos a las operaciones de servicio.
     [DataContract]
-    public class CompositeType
+    public class Producto
     {
-        bool boolValue = true;
-        string stringValue = "Hello ";
-
         [DataMember]
-        public bool BoolValue
-        {
-            get { return boolValue; }
-            set { boolValue = value; }
-        }
-
+        public int id { get; set; }
         [DataMember]
-        public string StringValue
-        {
-            get { return stringValue; }
-            set { stringValue = value; }
-        }
+        public string nombre { get; set; }
+        [DataMember]
+        public string descripcion { get; set; }
+        [DataMember]
+        public Nullable<double> precio { get; set; }
+        [DataMember]
+        public string tipo { get; set; }
     }
+    
 }

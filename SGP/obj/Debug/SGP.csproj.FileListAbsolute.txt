@@ -110,8 +110,8 @@ D:\PruebasTecnicas\SGP\SGP\bin\es\System.Web.Razor.resources.dll
 D:\PruebasTecnicas\SGP\SGP\bin\es\System.Web.WebPages.resources.dll
 D:\PruebasTecnicas\SGP\SGP\bin\es\System.Web.WebPages.Deployment.resources.dll
 D:\PruebasTecnicas\SGP\SGP\bin\es\System.Web.WebPages.Razor.resources.dll
-D:\PruebasTecnicas\SGP\SGP\obj\Debug\SGP.csprojAssemblyReference.cache
 D:\PruebasTecnicas\SGP\SGP\obj\Debug\SGP.csproj.CoreCompileInputs.cache
 D:\PruebasTecnicas\SGP\SGP\obj\Debug\SGP.csproj.CopyComplete
 D:\PruebasTecnicas\SGP\SGP\obj\Debug\SGP.dll
 D:\PruebasTecnicas\SGP\SGP\obj\Debug\SGP.pdb
+D:\PruebasTecnicas\SGP\SGP\obj\Debug\SGP.csprojAssemblyReference.cache
