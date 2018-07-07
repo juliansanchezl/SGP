@@ -1,0 +1,51 @@
+﻿@model IEnumerable<SGP.Models.Producto>
+
+@{
+    ViewBag.Title = "Seleccione el producto";
+}
+
+<h2>Seleccione el producto</h2>
+
+<br />
+
+<table class="table">
+    <tr>
+        <th>
+            Nombre
+        </th>
+        <th>
+            Tipo de producto
+        </th>
+        <th>
+            Descripcion
+        </th>
+        <th>
+            Precio
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TipoProducto.nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.descripcion)
+            </td>
+            <td>
+                $ @Html.DisplayFor(modelItem => item.precio)
+            </td>
+            <td>
+                @Html.ActionLink("Seleccionar", "irAgregarProducto", new { id = item.id, idventa = ViewBag.idventa })
+            </td>
+        </tr>
+    }
+
+</table>
+
+@Html.ActionLink("Volver al listado", "Index")

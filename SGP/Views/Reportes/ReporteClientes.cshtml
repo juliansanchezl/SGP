@@ -1,0 +1,62 @@
+﻿
+
+@{
+    ViewBag.Title = "Reporte Clientes";
+}
+
+<h2>Reporte Clientes</h2>
+
+@using (Html.BeginForm())
+{
+    <p>
+        Ciudad: @Html.TextBox("txtciudad") <input type="submit" class="btn-default" value="Consultar" />
+    </p>
+}
+
+    @if (ViewBag.reporte != null)
+    {
+
+<table class="table">
+    <tr>
+        <th>
+            Nombres
+        </th>
+        <th>
+            Apellidos
+        </th>
+        <th>
+            Ciudad
+        </th>
+        <th>
+            Departamento
+        </th>
+        <th>
+            Pais
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in ViewBag.reporte)
+    {
+        <tr>
+            <td>
+                @item.nombres
+            </td>
+            <td>
+                @item.apellidos
+            </td>
+            <td>
+                @item.ciudad
+            </td>
+            <td>
+                @item.departamento
+            </td>
+            <td>
+                @item.pais
+            </td>
+
+        </tr>
+    }
+
+</table>
+    }

@@ -1,0 +1,60 @@
+﻿@model SGP.Models.DetalleVenta
+
+@{
+    ViewBag.Title = "Agregar Producto";
+}
+
+<h2>Agregar Producto</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <hr />
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Nombre</label>
+        <div class="col-md-10">
+            @ViewBag.producto.nombre
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2">Tipo de Producto</label>
+        <div class="col-md-10">
+            @ViewBag.producto.TipoProducto.nombre
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2">Descripción</label>
+        <div class="col-md-10">
+            @ViewBag.producto.descripcion
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2">Precio unitario</label>
+        <div class="col-md-10">
+            @ViewBag.producto.precio
+        </div>
+    </div>
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.cantidad, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.cantidad, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.cantidad, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Agregar" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "irSeleccionarProducto", new { id = ViewBag.idventa})
+</div>

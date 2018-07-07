@@ -1,0 +1,46 @@
+﻿@model IEnumerable<SGP.Models.Venta>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Gestionar Ventas</h2>
+
+<p>
+    @Html.ActionLink("Create Nuevo Registro", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.fecha)
+        </th>
+        <th>
+            Cliente
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Total)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.fecha)
+        </td>
+        <td>
+            @item.Persona.nombres @item.Persona.apellidos  @*@Html.DisplayFor(modelItem => item.Persona.nombres)*@
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Total)
+        </td>
+
+        <td>
+            @Html.ActionLink("Consultar", "Details", new { id = item.id })  |
+            @Html.ActionLink("Editar", "Edit", new { id = item.id })  |
+            @Html.ActionLink("Eliminar", "Delete", new { id = item.id })
+        </td>
+    </tr>
+}
+
+</table>

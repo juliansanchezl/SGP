@@ -1,0 +1,48 @@
+﻿@model IEnumerable<SGP.Models.Pago>
+
+@{
+    ViewBag.Title = "Consultar Pagos";
+}
+
+<h2>Consultar Pagos</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.fecha)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.valor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EstadoPago.nombre)
+        </th>
+        <th>
+            Id Venta
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.fecha)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.valor)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EstadoPago.nombre)
+        </td>
+        <td>
+            @Html.ActionLink(item.Venta.id.ToString(), "irDetailsVenta", new { id = item.Venta.id })
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>

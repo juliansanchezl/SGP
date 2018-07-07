@@ -1,0 +1,119 @@
+﻿@model SGP.Models.Venta
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Venta</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha)
+        </dd>
+
+        <dt>
+            Cliente
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Persona.nombres)  @Html.DisplayFor(model => model.Persona.apellidos)
+        </dd>
+
+        <dt>
+            Total a Pagar
+        </dt>
+
+        <dd>
+           $ @Html.DisplayFor(model => model.Total)
+        </dd>
+
+
+        <dt>
+            
+        </dt>
+
+        <dd>
+            @*<input type="submit" value="($) Pagar" class="btn btn-default" />*@
+            @Html.ActionLink("($) Pagar", "irRealizarPago", new { ventaid=Model.id }, new { @class = "btn btn-default" })
+        </dd>
+
+    </dl>
+
+
+
+</div>
+
+<p>
+    @Html.ActionLink("(+) Agregar productos", "irSeleccionarProducto", new { id= Model.id })
+</p>
+
+<br />
+
+
+<table class="table">
+    <tr>
+        <th>
+            Nombre
+        </th>
+        <th>
+            Tipo de Producto
+        </th>
+        <th>
+            Descripción
+        </th>
+        <th>
+            Precio Unitario
+        </th>
+        <th>
+            Cantidad
+        </th>
+        <th>
+            Total
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.DetalleVenta)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Producto.nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Producto.TipoProducto.nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Producto.descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Producto.precio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cantidad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Total)
+            </td>
+            <td>
+                @Html.ActionLink("Eliminar", "irRemoverProductoVenta", new { id = item.id })
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+
+
+
+
+
+<p>
+    @Html.ActionLink("Volver al listado", "Index")
+</p>
